@@ -22,76 +22,7 @@ namespace KYS.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("BorrowRecord", b =>
-                {
-                    b.Property<Guid>("BookID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ReturnDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("BookID", "UserID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("BorrowRecords");
-                });
-
-            modelBuilder.Entity("Comment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BookID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("UserID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("Comment");
-                });
-
-            modelBuilder.Entity("KYS.Entities.Abstractions.Author", b =>
+            modelBuilder.Entity("KYS.Entities.Models.Author", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -133,7 +64,7 @@ namespace KYS.DataAccess.Migrations
                     b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("KYS.Entities.Abstractions.Book", b =>
+            modelBuilder.Entity("KYS.Entities.Models.Book", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -144,9 +75,6 @@ namespace KYS.DataAccess.Migrations
 
                     b.Property<string>("AuthorName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("BookID")
-                        .HasColumnType("int");
 
                     b.Property<Guid?>("BookTypeId")
                         .HasColumnType("uniqueidentifier");
@@ -202,7 +130,7 @@ namespace KYS.DataAccess.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("KYS.Entities.Abstractions.BookType", b =>
+            modelBuilder.Entity("KYS.Entities.Models.BookType", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -228,7 +156,70 @@ namespace KYS.DataAccess.Migrations
                     b.ToTable("BookTypes");
                 });
 
-            modelBuilder.Entity("KYS.Entities.Abstractions.Duyurular", b =>
+            modelBuilder.Entity("KYS.Entities.Models.BorrowRecord", b =>
+                {
+                    b.Property<Guid>("BookID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("BookID", "UserID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("BorrowRecords");
+                });
+
+            modelBuilder.Entity("KYS.Entities.Models.Comment", b =>
+                {
+                    b.Property<Guid>("BookID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("BookID", "UserID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("KYS.Entities.Models.Duyurular", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -257,7 +248,7 @@ namespace KYS.DataAccess.Migrations
                     b.ToTable("Duyurular");
                 });
 
-            modelBuilder.Entity("KYS.Entities.Abstractions.User", b =>
+            modelBuilder.Entity("KYS.Entities.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -298,15 +289,32 @@ namespace KYS.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("BorrowRecord", b =>
+            modelBuilder.Entity("KYS.Entities.Models.Book", b =>
                 {
-                    b.HasOne("KYS.Entities.Abstractions.Book", "Book")
+                    b.HasOne("KYS.Entities.Models.Author", "Author")
+                        .WithMany("Products")
+                        .HasForeignKey("AuthorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KYS.Entities.Models.BookType", "BookType")
+                        .WithMany("Books")
+                        .HasForeignKey("BookTypeId");
+
+                    b.Navigation("Author");
+
+                    b.Navigation("BookType");
+                });
+
+            modelBuilder.Entity("KYS.Entities.Models.BorrowRecord", b =>
+                {
+                    b.HasOne("KYS.Entities.Models.Book", "Book")
                         .WithMany("BorrowRecord")
                         .HasForeignKey("BookID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("KYS.Entities.Abstractions.User", "User")
+                    b.HasOne("KYS.Entities.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -317,15 +325,15 @@ namespace KYS.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Comment", b =>
+            modelBuilder.Entity("KYS.Entities.Models.Comment", b =>
                 {
-                    b.HasOne("KYS.Entities.Abstractions.Book", "Book")
+                    b.HasOne("KYS.Entities.Models.Book", "Book")
                         .WithMany("Comments")
                         .HasForeignKey("BookID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("KYS.Entities.Abstractions.User", "User")
+                    b.HasOne("KYS.Entities.Models.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -336,41 +344,24 @@ namespace KYS.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("KYS.Entities.Abstractions.Book", b =>
-                {
-                    b.HasOne("KYS.Entities.Abstractions.Author", "Author")
-                        .WithMany("Products")
-                        .HasForeignKey("AuthorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("KYS.Entities.Abstractions.BookType", "BookType")
-                        .WithMany("Books")
-                        .HasForeignKey("BookTypeId");
-
-                    b.Navigation("Author");
-
-                    b.Navigation("BookType");
-                });
-
-            modelBuilder.Entity("KYS.Entities.Abstractions.Author", b =>
+            modelBuilder.Entity("KYS.Entities.Models.Author", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("KYS.Entities.Abstractions.Book", b =>
+            modelBuilder.Entity("KYS.Entities.Models.Book", b =>
                 {
                     b.Navigation("BorrowRecord");
 
                     b.Navigation("Comments");
                 });
 
-            modelBuilder.Entity("KYS.Entities.Abstractions.BookType", b =>
+            modelBuilder.Entity("KYS.Entities.Models.BookType", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("KYS.Entities.Abstractions.User", b =>
+            modelBuilder.Entity("KYS.Entities.Models.User", b =>
                 {
                     b.Navigation("Comments");
                 });

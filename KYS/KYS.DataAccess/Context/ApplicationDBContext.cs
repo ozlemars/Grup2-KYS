@@ -40,6 +40,14 @@ namespace KYS.DataAccess.Context
                 b.BookID,
                 b.UserID
             });
+
+            modelBuilder.Entity<Comment>().Ignore(x => x.Id);
+
+            //Bunun yerine ProductID ve OrderID alanlarını Composite Key yapacağız:
+            modelBuilder.Entity<Comment>().HasKey(b => new {
+                b.BookID,
+                b.UserID
+            });
         }
 
     }

@@ -4,7 +4,6 @@ namespace KYS.Entities.Models
 {
     public class Book : BaseEntity
     {
-        public int BookID { get; set; }             // Birincil Anahtar
         public string? Title { get; set; }           // Kitap Başlığı
         public string? ISBN { get; set; }            // ISBN Numarası
         public int PublishedYear { get; set; }      // Yayınlanma Yılı
