@@ -36,7 +36,7 @@
 - Araştırmacılar ve Akademisyenler (Researchers and Academicians)
 
 
-### Development Progress (Geliştirme Süreci)
+## Development Progress (Geliştirme Süreci)
 
 | ![VS](https://imgur.com/JkIKo2y.png) | ![SQL](https://imgur.com/9Uwpso5.png) |
 |:------------------------------------:|:------------------------------------:|
