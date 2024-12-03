@@ -13,7 +13,7 @@ namespace KYS.Entities.Models
         public string? Description { get; set; }     // Kitap Açıklaması
         public string? Language { get; set; }        // Kitabın Dili
         public string? CoverImageUrl { get; set; }   // Kapak Resmi URL
-
+        public bool AvailabilityStatus { get; set; } //True ise var False ise yok.
         // Navigation Property : Authoer
         public Guid AuthorID { get; set; }  // Yazar ID'si (Yabancı Anahtar)
         public string? AuthorName { get; set; } //Yazar Adı
