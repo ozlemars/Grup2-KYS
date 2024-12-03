@@ -63,5 +63,10 @@ namespace KYS.Business.Services
         {
             _typeRepository.Update(entity);
         }
+
+        public void ValidationControl(BookType entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
