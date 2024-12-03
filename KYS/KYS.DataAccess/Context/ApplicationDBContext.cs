@@ -1,6 +1,6 @@
-﻿using KYS.Entities.Models;
+﻿using KYS.DataAccess.Configuration;
+using KYS.Entities.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 
 namespace KYS.DataAccess.Context
 {
@@ -21,13 +21,15 @@ namespace KYS.DataAccess.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer(@"Data Source=HUSEYIN;Initial Catalog=KYSDeneme;Integrated Security=True;TrustServerCertificate=True;");
-            //// app.config'den connection string okuma
-            //string connectionString = ConfigurationManager.ConnectionStrings["KYS"].ConnectionString;
+            //optionsBuilder.UseSqlServer(@"Data Source=HUSEYIN;Initial Catalog=KYSDeneme;Integrated Security=True;TrustServerCertificate=True;");
 
-            //// Bağlantı dizesini DbContext'e ekleme
-            //optionsBuilder.UseSqlServer(connectionString);
+
+            optionsBuilder.UseSqlServer(DBConfiguration.GetConnectionString());
         }
+
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //DB tablolarımız oluşturulurken onlara müdehale edebiliriz.
