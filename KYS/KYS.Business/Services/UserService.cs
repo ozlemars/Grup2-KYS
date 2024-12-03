@@ -1,4 +1,6 @@
-﻿using KYS.Business.Abstractions;
+﻿using FluentValidation.Results;
+using KYS.Business.Abstractions;
+using KYS.Business.Validators;
 using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
 using System;
@@ -20,7 +22,7 @@ namespace KYS.Business.Services
         }
         public void Create(User entity)
         {
-
+            ValidationControl(entity);
 
            _uRepository.Create(entity);
         }
@@ -33,14 +35,11 @@ namespace KYS.Business.Services
         public IEnumerable<User> GetAll()
         {
 
-
-
             return _uRepository.GetAll();
         }
 
         public User GetByID(Guid Id)
         {
-
 
             return _uRepository.GetByID(Id);
         }
@@ -53,13 +52,22 @@ namespace KYS.Business.Services
 
         public void Update(User entity)
         {
+            ValidationControl(entity);
 
             _uRepository.Update(entity);
         }
 
         public void ValidationControl(User entity)
         {
-            throw new NotImplementedException();
+            UserValidator uVal = new UserValidator();
+            ValidationResult result = uVal.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                StringBuilder sb = new StringBuilder();
+                result.Errors.ForEach(r => sb.AppendLine(r.ErrorMessage));
+                throw new Exception(sb.ToString());
+            }
         }
     }
 }

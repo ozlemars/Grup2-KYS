@@ -1,12 +1,10 @@
-﻿using KYS.Business.Abstractions;
+﻿using FluentValidation.Results;
+using KYS.Business.Abstractions;
+using KYS.Business.Validators;
 using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace KYS.Business.Services
 {
@@ -59,7 +57,16 @@ namespace KYS.Business.Services
 
         public void ValidationControl(BorrowRecord entity)
         {
-            
+            BorrowRecordValidator bVal = new BorrowRecordValidator();
+            ValidationResult result = bVal.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                StringBuilder sb = new StringBuilder();
+                result.Errors.ForEach(r => sb.AppendLine(r.ErrorMessage));
+                throw new Exception(sb.ToString());
+            }
+
         }
     }
 }

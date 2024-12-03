@@ -1,14 +1,10 @@
 ﻿using FluentValidation.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using KYS.Business.Abstractions;
+using KYS.Business.Validators;
 using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
-using KYS.Business.Validators;
+using System.Linq.Expressions;
+using System.Text;
 
 namespace KYS.Business.Services
 {
@@ -21,15 +17,8 @@ namespace KYS.Business.Services
         }
         public void Create(BookType entity)
         {
-            BookTypeValidator tVal = new BookTypeValidator();
-            ValidationResult result = tVal.Validate(entity);
 
-            if (!result.IsValid)
-            {
-                StringBuilder sb = new StringBuilder();
-                result.Errors.ForEach(r => sb.AppendLine(r.ErrorMessage));
-                throw new Exception(sb.ToString());
-            }
+            ValidationControl(entity);
 
             _typeRepository.Create(entity);
         }
@@ -61,7 +50,22 @@ namespace KYS.Business.Services
 
         public void Update(BookType entity)
         {
+            ValidationControl(entity);
+
             _typeRepository.Update(entity);
+        }
+
+        public void ValidationControl(BookType entity)
+        {
+            BookTypeValidator tVal = new BookTypeValidator();
+            ValidationResult result = tVal.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                StringBuilder sb = new StringBuilder();
+                result.Errors.ForEach(r => sb.AppendLine(r.ErrorMessage));
+                throw new Exception(sb.ToString());
+            }
         }
     }
 }

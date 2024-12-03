@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KYS.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241203065147_Deneme")]
-    partial class Deneme
+    [Migration("20241203122243_İlkKurulum")]
+    partial class İlkKurulum
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,6 @@ namespace KYS.DataAccess.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Biography")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("BirthDate")
@@ -76,13 +75,10 @@ namespace KYS.DataAccess.Migrations
                     b.Property<Guid>("AuthorID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AuthorName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("AvailabilityStatus")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("BookTypeId")
+                    b.Property<Guid>("BookTypeID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("CopiesAvailable")
@@ -106,23 +102,20 @@ namespace KYS.DataAccess.Migrations
                     b.Property<string>("Language")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Pages")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("PublicherID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("PublishedYear")
                         .HasColumnType("int");
 
-                    b.Property<string>("Publisher")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TypeID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TypeName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("PublisherId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -131,7 +124,9 @@ namespace KYS.DataAccess.Migrations
 
                     b.HasIndex("AuthorID");
 
-                    b.HasIndex("BookTypeId");
+                    b.HasIndex("BookTypeID");
+
+                    b.HasIndex("PublisherId");
 
                     b.ToTable("Books");
                 });
@@ -254,6 +249,32 @@ namespace KYS.DataAccess.Migrations
                     b.ToTable("Duyurular");
                 });
 
+            modelBuilder.Entity("KYS.Entities.Models.Publisher", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Publisher");
+                });
+
             modelBuilder.Entity("KYS.Entities.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -305,11 +326,19 @@ namespace KYS.DataAccess.Migrations
 
                     b.HasOne("KYS.Entities.Models.BookType", "BookType")
                         .WithMany("Books")
-                        .HasForeignKey("BookTypeId");
+                        .HasForeignKey("BookTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KYS.Entities.Models.Publisher", "Publisher")
+                        .WithMany("Books")
+                        .HasForeignKey("PublisherId");
 
                     b.Navigation("Author");
 
                     b.Navigation("BookType");
+
+                    b.Navigation("Publisher");
                 });
 
             modelBuilder.Entity("KYS.Entities.Models.BorrowRecord", b =>
@@ -363,6 +392,11 @@ namespace KYS.DataAccess.Migrations
                 });
 
             modelBuilder.Entity("KYS.Entities.Models.BookType", b =>
+                {
+                    b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("KYS.Entities.Models.Publisher", b =>
                 {
                     b.Navigation("Books");
                 });

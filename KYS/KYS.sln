@@ -13,7 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KYS.Business", "KYS.Busines
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E5BA74C-7AAF-48FC-B198-E692FF7B2244}"
 	ProjectSection(SolutionItems) = preProject
-		App.Config = App.Config
 		Notes.txt = Notes.txt
 	EndProjectSection
 EndProject

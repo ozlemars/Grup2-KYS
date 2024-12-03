@@ -1,6 +1,6 @@
-﻿using KYS.DataAccess.Configuration;
-using KYS.Entities.Models;
+﻿using KYS.Entities.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace KYS.DataAccess.Context
 {
@@ -15,20 +15,14 @@ namespace KYS.DataAccess.Context
         public DbSet<User> Users { get; set; }                  // Kullanıcılar
         public DbSet<BorrowRecord> BorrowRecords { get; set; }  // Ödünç Alma 
         public DbSet<Comment> Comments { get; set; }            //Yorumlar
+        public DbSet<Publisher> Publishers { get; set; }        //Yayıncı
 
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
-            //optionsBuilder.UseSqlServer(@"Data Source=HUSEYIN;Initial Catalog=KYSDeneme;Integrated Security=True;TrustServerCertificate=True;");
-
-            string a = DBConfiguration.GetConnectionString();
-            optionsBuilder.UseSqlServer(DBConfiguration.GetConnectionString());
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["HUSEYIN"]?.ConnectionString);
         }
-
-
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

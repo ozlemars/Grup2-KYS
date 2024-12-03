@@ -9,7 +9,7 @@ namespace KYS.Entities.Models
         public string? FullName => $"{Name} {Surname}";
         public DateTime? BirthDate { get; set; }    // Doğum Tarihi
         public DateTime? DeathDate { get; set; }    //Ölüm Tarihi
-        public string Biography { get; set; }       //Biyografi
+        public string? Biography { get; set; }       //Biyografi
         public string? Country { get; set; }        //Ülke
         public string? PhotoUrl { get; set; }       // Yazarın Fotoğrafı URL
 

@@ -7,6 +7,7 @@ namespace KYS.Entities.Models
         public Guid BookID { get; set; } // Yorum yapılan kitabın ID'si (Foreign Key)
         public Book? Book { get; set; } // Kitap ile ilişki
 
+
         public Guid UserID { get; set; } // Yorumu yapan kullanıcının ID'si (Foreign Key)
         public User? User { get; set; } // Kullanıcı ile ilişki
 

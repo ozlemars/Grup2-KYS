@@ -1,14 +1,10 @@
 ﻿using FluentValidation.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using KYS.Business.Abstractions;
 using KYS.Business.Validators;
 using KYS.DataAccess.Repositories;
 using KYS.Entities.Models;
+using System.Linq.Expressions;
+using System.Text;
 
 namespace KYS.Business.Services
 {
@@ -21,15 +17,7 @@ namespace KYS.Business.Services
         }
         public void Create(Author entity)
         {
-            AuthorValidator aVal = new AuthorValidator();
-            ValidationResult result = aVal.Validate(entity);
-
-            if (!result.IsValid)
-            {
-                StringBuilder sb = new StringBuilder();
-                result.Errors.ForEach(r => sb.AppendLine(r.ErrorMessage));
-                throw new Exception(sb.ToString());
-            }
+            ValidationControl(entity);
 
             _authorRepository.Create(entity);
         }
@@ -61,7 +49,22 @@ namespace KYS.Business.Services
 
         public void Update(Author entity)
         {
+            ValidationControl(entity);
+
             _authorRepository.Update(entity);
+        }
+
+        public void ValidationControl(Author entity)
+        {
+            AuthorValidator aVal = new AuthorValidator();
+            ValidationResult result = aVal.Validate(entity);
+
+            if (!result.IsValid)
+            {
+                StringBuilder sb = new StringBuilder();
+                result.Errors.ForEach(r => sb.AppendLine(r.ErrorMessage));
+                throw new Exception(sb.ToString());
+            }
         }
     }
 }

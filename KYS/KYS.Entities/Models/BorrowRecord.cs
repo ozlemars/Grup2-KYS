@@ -6,9 +6,11 @@ namespace KYS.Entities.Models
     {
         public Guid BookID { get; set; }  // Ödünç alınan kitabın ID'si (Yabancı Anahtar)
         public Book? Book { get; set; }    // Kitap ile ilişki
+        public string? BookName => Book?.Name;
 
         public Guid UserID { get; set; }  // Kitabı ödünç alan kullanıcının ID'si (Yabancı Anahtar)
         public User? User { get; set; }   // Kullanıcı ile ilişki
+        public string? UserName => User?.Name;
 
         //public DateTime BorrowDate { get; set; }  // Ödünç alma tarihi :baseentiyde var
         public DateTime DueDate { get; set; } // İade edilmesi gereken son tarih

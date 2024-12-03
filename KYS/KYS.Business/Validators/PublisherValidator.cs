@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace KYS.Business.Validators
 {
-    public class CommentValidator: AbstractValidator<Comment>
+    public class PublisherValidator: AbstractValidator<Publisher>
     {
-        public CommentValidator()
+        public PublisherValidator() 
         {
 
         }

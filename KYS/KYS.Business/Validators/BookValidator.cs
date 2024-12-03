@@ -12,7 +12,7 @@ namespace KYS.Business.Validators
     {
         public BookValidator() 
         {
-            RuleFor(b => b.Title).NotEmpty()
+            RuleFor(b => b.Name).NotEmpty()
                .WithMessage("Başlık Adı boş olamaz!");
             RuleFor(b => b.ISBN).NotEmpty()
                .WithMessage("ISBN numarası boş olamaz!");
