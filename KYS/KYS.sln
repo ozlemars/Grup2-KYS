@@ -5,15 +5,16 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KYS.UI", "KYS.UI\KYS.UI.csproj", "{7DE5501C-4D32-4320-99B0-69808370A763}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KYS.Entities", "KYS.Entities\KYS.Entities.csproj", "{C0B2606F-329A-4C0B-9C6C-68F965565F75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KYS.Entities", "KYS.Entities\KYS.Entities.csproj", "{C0B2606F-329A-4C0B-9C6C-68F965565F75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KYS.DataAccess", "KYS.DataAccess\KYS.DataAccess.csproj", "{19C53405-D942-46B9-A673-3D3F5FFFC299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KYS.DataAccess", "KYS.DataAccess\KYS.DataAccess.csproj", "{19C53405-D942-46B9-A673-3D3F5FFFC299}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KYS.Business", "KYS.Business\KYS.Business.csproj", "{F233A7B6-064D-43AB-922E-CFCD40E6BAB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KYS.Business", "KYS.Business\KYS.Business.csproj", "{F233A7B6-064D-43AB-922E-CFCD40E6BAB1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E5BA74C-7AAF-48FC-B198-E692FF7B2244}"
 	ProjectSection(SolutionItems) = preProject
 		App.Config = App.Config
+		Notes.txt = Notes.txt
 	EndProjectSection
 EndProject
 Global

@@ -35,4 +35,10 @@
 - Belediyeler ve Kamu Kurumları (Municipalities and Public Institutions)
 - Araştırmacılar ve Akademisyenler (Researchers and Academicians)
 
-## Links (Bağlantılar)
+
+## Development Progress (Geliştirme Süreci)
+
+| ![VS](https://imgur.com/JkIKo2y.png) | ![SQL](https://imgur.com/9Uwpso5.png) |
+|:------------------------------------:|:------------------------------------:|
+| Visual Studio'da ön çalışma gerçekleşti | SQL Diagram çalışması yapıldı |
+
