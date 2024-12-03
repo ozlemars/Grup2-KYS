@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="Validators\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\KYS.DataAccess\KYS.DataAccess.csproj" />
     <ProjectReference Include="..\KYS.Entities\KYS.Entities.csproj" />
   </ItemGroup>

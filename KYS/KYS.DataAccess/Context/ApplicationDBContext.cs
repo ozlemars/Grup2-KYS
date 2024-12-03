@@ -23,7 +23,7 @@ namespace KYS.DataAccess.Context
 
             //optionsBuilder.UseSqlServer(@"Data Source=HUSEYIN;Initial Catalog=KYSDeneme;Integrated Security=True;TrustServerCertificate=True;");
 
-
+            string a = DBConfiguration.GetConnectionString();
             optionsBuilder.UseSqlServer(DBConfiguration.GetConnectionString());
         }
 
