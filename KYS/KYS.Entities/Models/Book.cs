@@ -1,4 +1,9 @@
-﻿using KYS.Entities.Abstractions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using KYS.Entities.Abstractions;
 
 namespace KYS.Entities.Models
 {
@@ -33,4 +38,3 @@ namespace KYS.Entities.Models
 
     }
 }
-

@@ -1,4 +1,4 @@
-﻿using KYS.DataAccess.Abstractions;
+using KYS.DataAccess.Abstractions;
 using KYS.Entities.Abstractions;
 using System;
 using System.Collections.Generic;

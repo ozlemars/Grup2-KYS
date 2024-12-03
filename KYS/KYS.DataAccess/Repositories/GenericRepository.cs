@@ -1,4 +1,4 @@
-﻿using KYS.DataAccess.Abstractions;
+using KYS.DataAccess.Abstractions;
 using KYS.DataAccess.Context;
 using KYS.Entities.Abstractions;
 using Microsoft.EntityFrameworkCore;
@@ -15,13 +15,13 @@ namespace KYS.DataAccess.Repositories
     {
         private readonly ApplicationDBContext _dbContext;
         private readonly DbSet<T> _dbSet;
+
         public GenericRepository(ApplicationDBContext context)
         {
             _dbContext = context;
             _dbSet = _dbContext.Set<T>();
         }
-
-
+        
         public void Create(T entity)
         {
             _dbSet.Add(entity);
